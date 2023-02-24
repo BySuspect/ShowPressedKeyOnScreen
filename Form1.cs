@@ -1,23 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShowPressedKeyOnScreen
 {
     public partial class Form1 : Form
     {
-
-        bool PressingCTRL = false;
-        bool PressingALT = false;
-        bool PressingSHIFT = false;
-        bool PressingKey = false;
         List<string> PressedKeys = new List<string>();
         public Form1()
         {
@@ -53,26 +42,13 @@ namespace ShowPressedKeyOnScreen
         private void KeyboardListener_s_KeyEventHandler(object sender, EventArgs e)
         {
             KeyboardListener.UniversalKeyEventArgs eventArgs = (KeyboardListener.UniversalKeyEventArgs)e;
-            Debug.WriteLine(eventArgs.m_Msg);
+
             if (eventArgs.m_Msg == 256) // key down and while press
             {
-                Debug.WriteLine($"EventMsg: KeyDown  KeyValue: {eventArgs.KeyValue} KeyData: {eventArgs.KeyData} KeyCode: {eventArgs.KeyCode}");
-                if (eventArgs.KeyData == Keys.ControlKey)
-                {
-                    PressingCTRL = true;
-                }
-                else if (eventArgs.KeyData == Keys.Menu)
-                {
-                    PressingALT = true;
-                }
-                else if (eventArgs.KeyData == Keys.ShiftKey)
-                {
-                    PressingSHIFT = true;
-                }
+                //Debug.WriteLine($"EventMsg: KeyDown  KeyValue: {eventArgs.KeyValue} KeyData: {eventArgs.KeyData} KeyCode: {eventArgs.KeyCode}");
                 PressedKeys.Add(eventArgs.KeyData.ToString());
                 PressedKeys = RemoveDuplicates(PressedKeys);
                 lblKeyPressed.Text = " ";
-                PressingKey = true;
                 foreach (var item in PressedKeys)
                 {
                     lblKeyPressed.Text += KeysToString(item) + " ";
@@ -83,7 +59,6 @@ namespace ShowPressedKeyOnScreen
                 PressedKeys.Add(eventArgs.KeyData.ToString());
                 PressedKeys = RemoveDuplicates(PressedKeys);
                 lblKeyPressed.Text = " ";
-                PressingKey = true;
                 foreach (var item in PressedKeys)
                 {
                     lblKeyPressed.Text += KeysToString(item) + " ";
@@ -92,19 +67,7 @@ namespace ShowPressedKeyOnScreen
 
             if (eventArgs.m_Msg == 257) // key up
             {
-                Debug.WriteLine($"EventMsg: KeyUp  KeyValue: {eventArgs.KeyValue} KeyData: {eventArgs.KeyData} KeyCode: {eventArgs.KeyCode}");
-                if (eventArgs.KeyData == Keys.ControlKey)
-                {
-                    PressingCTRL = false;
-                }
-                else if (eventArgs.KeyData == Keys.Menu)
-                {
-                    PressingALT = false;
-                }
-                else if (eventArgs.KeyData == Keys.ShiftKey)
-                {
-                    PressingSHIFT = false;
-                }
+                //Debug.WriteLine($"EventMsg: KeyUp  KeyValue: {eventArgs.KeyValue} KeyData: {eventArgs.KeyData} KeyCode: {eventArgs.KeyCode}");
                 PressedKeys = RemoveDuplicates(PressedKeys);
                 PressedKeys.Remove(eventArgs.KeyData.ToString());
                 lblKeyPressed.Text = " ";
