@@ -7,9 +7,9 @@ namespace ShowPressedKeyOnScreen
 {
     /// <summary>
     /// The KeyboardListener is a static class that allows registering a number
-    /// of event handlers that you want to get called in case some keyboard key is pressed 
-    /// or released. The nice thing is that this KeyboardListener is also active in case
-    /// the parent application is running in the back.
+    /// of event handlers that you want to get called in case some keyboard key
+    /// is pressed or released. The nice thing is that this KeyboardListener is
+    /// also active in case the parent application is running in the back.
     /// </summary>
     [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "SkipVerification")]
     public class KeyboardListener
@@ -25,13 +25,15 @@ namespace ShowPressedKeyOnScreen
 
         #region Private methods
         /// <summary>
-        /// The function that will handle all keyboard activity signaled by the ListeningWindow.
-        /// In this context handling means calling all registered subscribers for every key pressed / released.
+        /// The function that will handle all keyboard activity signaled by the
+        /// ListeningWindow. In this context handling means calling all
+        /// registered subscribers for every key pressed / released.
         /// </summary>
         /// <remarks>
         /// Inside this method the events could also be fired by calling
-        /// s_KeyEventHandler(null,new KeyEventArgs(key,msg)) However, in case one of the registered
-        /// subscribers throws an exception, execution of the non-executed subscribers is cancelled.
+        /// s_KeyEventHandler(null,new KeyEventArgs(key,msg)) However, in case
+        /// one of the registered subscribers throws an exception, execution of
+        /// the non-executed subscribers is cancelled.
         /// </remarks>
         /// <param name="key"></param>
         /// <param name="msg"></param>
@@ -61,7 +63,8 @@ namespace ShowPressedKeyOnScreen
         #region Public declarations
 
         /// <summary>
-        /// An instance of this class is passed when Keyboard events are fired by the KeyboardListener.
+        /// An instance of this class is passed when Keyboard events are fired
+        /// by the KeyboardListener.
         /// </summary>
         public class UniversalKeyEventArgs : KeyEventArgs
         {
@@ -95,7 +98,8 @@ namespace ShowPressedKeyOnScreen
 
         #region Definition ListeningWindow class
         /// <summary>
-        /// A ListeningWindow object is a Window that intercepts Keyboard events.
+        /// A ListeningWindow object is a Window that intercepts Keyboard
+        /// events.
         /// </summary>
         private class ListeningWindow : NativeWindow
         {
